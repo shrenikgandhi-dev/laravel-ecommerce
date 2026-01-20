@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root {
+    --color-primary: rgb(9, 209, 182);
+    --color-secondary: rgb(255, 105, 120);
+    --color-accent: rgb(37, 37, 37);
+    --color-muted: rgb(233, 233, 233);
+    --color-success: rgb(8, 203, 0);
+    --color-warning: rgb(255, 212, 29);
+    --color-error: rgb(255, 0, 0);
+    --color-white: rgb(255, 255, 255);
+    --color-black: rgb(0, 0, 0);
+
+    --font-primary: 'Source Sans 3', sans-serif;
+    --font-secondary: 'Playfair', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-primary);
+    color: var(--color-black);
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6, div, .primary-heading, .secondary-heading {
+    font-family: var(--font-primary);
+}
+
+p, span, .desc, .info, .content {
+    font-family: var(--font-secondary);
+}
+
+.custom-container {
+    max-width: 75%;
+    min-width: 75%;
+    margin: auto;
+}
+@media screen and (max-width: 1024px) {
+    .custom-container {
+        max-width: 95%;
+        min-width: 95%;
+    }
+}

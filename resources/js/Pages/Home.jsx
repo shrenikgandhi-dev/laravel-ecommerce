@@ -1,10 +1,12 @@
-import Header from "@/Layouts/Header";
+import Header from "@/Layouts/Header/Header";
+import Container from "@/Components/Container";
 
 export default function Home() {
 
     return (
         <>
-        <Header />
+            <Header />
+            <Container></Container>
         </>
     );
 }

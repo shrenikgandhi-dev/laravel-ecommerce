@@ -4,43 +4,68 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
+        fname: '',
+        lname: '',
         email: '',
+        uname: '',
+        country_code: '',
+        phone: '',
         password: '',
         password_confirmation: '',
+        profile_picture: '',
+        photo_id: '',
     });
 
     const submit = (e) => {
         e.preventDefault();
 
         post(route('register'), {
+            forceFormData: true,
             onFinish: () => reset('password', 'password_confirmation'),
         });
     };
 
     return (
-        <GuestLayout>
+        <GuestLayout title="Guest Register">
             <Head title="Register" />
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="fname" value="First Name" />
 
                     <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
+                        id="fname"
+                        name="fname"
+                        value={data.fname}
                         className="mt-1 block w-full"
-                        autoComplete="name"
+                        autoComplete="given-name"
                         isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
+                        onChange={(e) => setData('fname', e.target.value)}
                         required
                     />
 
-                    <InputError message={errors.name} className="mt-2" />
+                    <InputError message={errors.fname} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="lname" value="Last Name" />
+
+                    <TextInput
+                        id="lname"
+                        name="lname"
+                        value={data.lname}
+                        className="mt-1 block w-full"
+                        autoComplete="family-name"
+                        onChange={(e) => setData('lname', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.lname} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -58,6 +83,47 @@ export default function Register() {
                     />
 
                     <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel className='mb-1' htmlFor="phone" value="Phone" />
+
+                    <PhoneInput
+                        value={data.phone}
+                        onChange={(phone, country) => { 
+                            setData('phone', phone);
+                            setData('country_code', country.dialCode);
+                        }}
+                        country={'in'}
+                        enableSearch
+                        inputStyle={{
+                            width: '100%',
+                        }}
+                        inputProps={{
+                            id: 'phone',
+                            name: 'phone',
+                            required: true,
+                            minLength: 6,
+                            autoComplete: 'tel',
+                        }}
+                    />
+
+                    <InputError message={errors.phone} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="uname" value="User Name" />
+
+                    <TextInput
+                        id="uname"
+                        name="uname"
+                        value={data.uname}
+                        className="mt-1 block w-full"
+                        onChange={(e) => setData('uname', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.uname} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -100,6 +166,34 @@ export default function Register() {
                         message={errors.password_confirmation}
                         className="mt-2"
                     />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="profile_picture" value="Profile Picture" />
+
+                    <TextInput
+                        type="file"
+                        id="profile_picture"
+                        name="profile_picture"
+                        className="mt-1 block w-full"
+                        onChange={(e) => setData('profile_picture', e.target.files[0])}
+                    />
+
+                    <InputError message={errors.profile_picture} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="photo_id" value="Photo ID" />
+
+                    <TextInput
+                        type="file"
+                        id="photo_id"
+                        name="photo_id"
+                        className="mt-1 block w-full"
+                        onChange={(e) => setData('photo_id', e.target.files[0])}
+                    />
+
+                    <InputError message={errors.photo_id} className="mt-2" />
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">

@@ -34,6 +34,9 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            config('constants.ADMIN_DIR') . '_auth' => [
+                'user' => $request->user(config('constants.ADMIN_DIR')),
+            ],
         ];
     }
 }

@@ -13,7 +13,19 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                primary: ['Source Sans 3', ...defaultTheme.fontFamily.sans],
+                secondary: ['Playfair', ...defaultTheme.fontFamily.serif],
+            },
+            colors: {
+                primary: 'var(--color-primary)',
+                secondary: 'var(--color-secondary)',
+                accent: 'var(--color-accent)',
+                muted: 'var(--color-muted)',
+                success: 'var(--color-success)',
+                warning: 'var(--color-warning)',
+                error: 'var(--color-error)',
+                white: 'var(--color-white)',
+                black: 'var(--color-black)',
             },
         },
     },

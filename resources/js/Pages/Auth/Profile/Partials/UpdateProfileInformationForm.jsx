@@ -14,8 +14,10 @@ export default function UpdateProfileInformation({
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
-            name: user.name,
+            fname: user.fname,
+            lname: user.lname,
             email: user.email,
+            uname: user.uname,
         });
 
     const submit = (e) => {
@@ -38,19 +40,34 @@ export default function UpdateProfileInformation({
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="fname" value="First Name" />
 
                     <TextInput
-                        id="name"
+                        id="fname"
                         className="mt-1 block w-full"
-                        value={data.name}
-                        onChange={(e) => setData('name', e.target.value)}
+                        value={data.fname}
+                        onChange={(e) => setData('fname', e.target.value)}
                         required
                         isFocused
                         autoComplete="name"
                     />
 
-                    <InputError className="mt-2" message={errors.name} />
+                    <InputError className="mt-2" message={errors.fname} />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="lname" value="Last Name" />
+
+                    <TextInput
+                        id="lname"
+                        className="mt-1 block w-full"
+                        value={data.lname}
+                        onChange={(e) => setData('lname', e.target.value)}
+                        required
+                        autoComplete="lname"
+                    />
+
+                    <InputError className="mt-2" message={errors.lname} />
                 </div>
 
                 <div>
@@ -91,6 +108,21 @@ export default function UpdateProfileInformation({
                         )}
                     </div>
                 )}
+
+                <div>
+                    <InputLabel htmlFor="uname" value="Username" />
+
+                    <TextInput
+                        id="uname"
+                        className="mt-1 block w-full"
+                        value={data.uname}
+                        onChange={(e) => setData('uname', e.target.value)}
+                        required
+                        autoComplete="username"
+                    />
+
+                    <InputError className="mt-2" message={errors.email} />
+                </div>
 
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>Save</PrimaryButton>
